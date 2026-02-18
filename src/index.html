@@ -167,6 +167,50 @@
     </div>
   </div>
 
+  <!-- ECS Analysis Section -->
+  <div class="chart-section" style="border-left: 4px solid #dc2626;">
+    <h2 style="color: #991b1b;">Education Cost Sharing (ECS) — State Funding Gap</h2>
+    <p class="subtitle">The state's ECS grant to Colchester has been flat or declining since FY 2013-14, shifting costs to local taxpayers.</p>
+    <div class="key-stats" style="margin: 16px 0;">
+      <div class="stat-card" style="border-left-color: #dc2626;">
+        <div class="value" style="color: #dc2626;">-$42.2M</div>
+        <div class="label">Cumulative Gap vs<br>Inflation (18 Years)</div>
+      </div>
+      <div class="stat-card" style="border-left-color: #dc2626;">
+        <div class="value" style="color: #dc2626;">-$7.2M</div>
+        <div class="label">Annual Gap Today<br>(FY 24-25)</div>
+      </div>
+      <div class="stat-card" style="border-left-color: #dc2626;">
+        <div class="value" style="color: #dc2626;">36.8% → 26.4%</div>
+        <div class="label">ECS Share of BOE<br>Budget Decline</div>
+      </div>
+      <div class="stat-card" style="border-left-color: #dc2626;">
+        <div class="value" style="color: #dc2626;">5 Years</div>
+        <div class="label">ECS Frozen at<br>$12.04M</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart 11: ECS Actual vs Inflation-Adjusted -->
+  <div class="chart-section">
+    <h2>ECS Funding: Actual vs. What It Should Be (Inflation-Adjusted)</h2>
+    <p class="subtitle">Shows actual ECS revenue vs. what Colchester would receive if ECS had kept pace with CPI inflation from FY 2007-08. The red shaded area represents lost purchasing power.</p>
+    <div class="chart-container"><canvas id="chart11"></canvas></div>
+    <div class="insight-box" style="background: #fef2f2; border-color: #fecaca; color: #991b1b;">
+      <strong>Key takeaway:</strong> If ECS had simply kept pace with inflation from FY 2007-08, Colchester would receive <strong>$19.2 million today</strong> instead of $12.0 million — a gap of <strong>$7.2 million per year</strong>. Over 18 years, this has cost the school system a cumulative <strong>$42.2 million in lost purchasing power</strong>, all of which has been backfilled by local property taxpayers.
+    </div>
+  </div>
+
+  <!-- Chart 12: ECS as % of BOE Budget -->
+  <div class="chart-section">
+    <h2>ECS as a Percentage of the BOE Budget</h2>
+    <p class="subtitle">The state's share of funding for Colchester schools has steadily eroded, shifting the burden to property taxes.</p>
+    <div class="chart-container"><canvas id="chart12"></canvas></div>
+    <div class="insight-box" style="background: #fef2f2; border-color: #fecaca; color: #991b1b;">
+      <strong>Key takeaway:</strong> The state covered <strong>36.8% of the BOE budget</strong> in FY 2007-08. Today it covers just <strong>26.4%</strong> — a decline of over 10 percentage points. Colchester is classified as "overfunded" under the ECS formula and has been held harmless (frozen) since FY 2020-21, but rising costs mean the real value erodes every year. The CT Conference of Municipalities estimates <strong>$820 million in missed inflationary adjustments statewide since 2013</strong>.
+    </div>
+  </div>
+
   <!-- Summary Narrative -->
   <div class="narrative">
     <h2>Summary: Colchester's Spending is Under Control</h2>
@@ -175,6 +219,7 @@
     <p>The town's annual budget compound growth rate of just 1.7% reflects disciplined fiscal management — including years with flat or negative budgets (FY 2009-10, FY 2012-13, FY 2020-21). Even the largest single-year increase (5.1% in FY 2024-25) came after years of below-inflation growth and remains modest by any municipal standard.</p>
     <p>Compared to its neighbors, Colchester's FY 2024-25 mill rate of 28.67 is <strong>the 3rd lowest among 7 surrounding towns</strong> and 8% below the neighbor average of 31.1 mills. East Hampton (38.04) and Marlborough (36.29) have significantly higher mill rates.</p>
     <p>Among demographic peer towns statewide (similar population, income, and character), Colchester has the <strong>lowest per capita spending at $3,979</strong> — 8.2% below the peer average of $4,334. Ellington ($4,295), East Hampton ($4,326), Ledyard ($4,328), and Tolland ($4,390) all spend more per resident. This confirms that Colchester is not just keeping pace — it's leading in fiscal efficiency.</p>
+    <p>Perhaps most striking is the erosion of state education funding. The ECS (Education Cost Sharing) grant — the state's primary education aid — peaked at $13.8 million in FY 2013-14 and has been frozen at $12.04 million since FY 2020-21. If ECS had simply kept pace with inflation from FY 2007-08, Colchester would receive <strong>$19.2 million today</strong> instead of $12.0 million. Over 18 years, this has cost the school system a cumulative <strong>$42.2 million in lost purchasing power</strong> — all of which local property taxpayers have had to absorb. The state's share of the BOE budget has fallen from 36.8% to 26.4%, a decline of more than 10 percentage points.</p>
   </div>
 
   <!-- Sources Section -->
@@ -206,13 +251,21 @@
       <li><a href="https://www.tollandct.gov/finance-department/pages/2024-2025-budget-information" style="color: #2563eb;">Town of Tolland — FY 24-25 Budget ($63.7M)</a></li>
       <li><a href="https://www.ledyarddtc.com/blog/town-of-ledyard-fy-2425-budget" style="color: #2563eb;">Town of Ledyard — FY 24-25 Budget (~$67.4M, estimated from FY 25-26 proposal)</a></li>
     </ul>
+    <p style="font-size: 0.92rem; color: #475569;"><strong>ECS (Education Cost Sharing) Data</strong></p>
+    <ul style="font-size: 0.88rem; color: #64748b; margin: 8px 0 16px 20px; line-height: 1.8;">
+      <li><a href="https://portal.ct.gov/SDE/Fiscal-Services/Education-Cost-Sharing-Grant-ECS-MBR" style="color: #2563eb;">CT State Department of Education — ECS Grant / MBR</a> — Official ECS grant entitlements by town</li>
+      <li><a href="https://schoolstatefinance.org/issues/ecs-formula" style="color: #2563eb;">School+State Finance Project — ECS Formula</a> — Phase-in schedules, hold-harmless provisions</li>
+      <li><a href="https://ctmirror.org/2025/09/01/ct-education-cost-sharing-formula-ecs/" style="color: #2563eb;">CT Mirror — How CT Schools Are Funded: The ECS Formula</a></li>
+      <li><a href="https://ctmirror.org/2019/02/20/see-how-your-town-fares-in-the-governors-proposed-budget-2/" style="color: #2563eb;">CT Mirror — See How Your Town Fares (2019 ECS Cuts)</a> — Colchester faced $1.1M (8.5%) proposed ECS reduction</li>
+      <li>ECS revenue figures extracted directly from each year's Adopted Budget PDF (revenue pages)</li>
+    </ul>
     <p style="font-size: 0.92rem; color: #475569;"><strong>Demographics &amp; Comparisons</strong></p>
     <ul style="font-size: 0.88rem; color: #64748b; margin: 8px 0 16px 20px; line-height: 1.8;">
       <li><a href="https://www.connecticut-demographics.com/colchester-demographics" style="color: #2563eb;">Colchester Demographics — Connecticut-Demographics.com</a></li>
       <li><a href="https://datausa.io/profile/geo/colchester-ct" style="color: #2563eb;">Colchester, CT — Data USA</a></li>
       <li><a href="https://portal.ct.gov/DECD/Content/About_DECD/Research-and-Publications/04_Access_TownProfiles/Connecticut-Town-Profile-Data" style="color: #2563eb;">CT DECD — Connecticut Town Profile Data</a></li>
     </ul>
-    <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 16px;"><em>Note: Mill rate comparisons should account for revaluation timing. Connecticut towns undergo property revaluations every 5 years on staggered schedules, which can cause mill rates to drop sharply post-revaluation and gradually rise between revaluations. Per capita budget comparisons use FY 2024-25 adopted budgets and 2024 U.S. Census Bureau population estimates.</em></p>
+    <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 16px;"><em>Note: Mill rate comparisons should account for revaluation timing. Connecticut towns undergo property revaluations every 5 years on staggered schedules, which can cause mill rates to drop sharply post-revaluation and gradually rise between revaluations. Per capita budget comparisons use FY 2024-25 adopted budgets and 2024 U.S. Census Bureau population estimates. ECS figures extracted directly from each year's adopted budget PDF revenue pages. FY 2010-11 ECS was reduced due to state budget cuts ($1.93M offset by federal ARRA funds). Colchester is classified as "overfunded" under the ECS formula and has been "held harmless" (frozen) since FY 2020-21. FY 2023-24 ECS amount assumed same as FY 2022-23 per hold-harmless provision.</em></p>
   </div>
 
 </div>
@@ -445,6 +498,90 @@ new Chart(document.getElementById('chart9'), {
     scales: {
       x: { title: { display: true, text: 'Mill Rate' }, min: 0, max: 45, grid: { color: '#f1f5f9' } },
       y: { grid: { display: false } }
+    }
+  }
+});
+
+// Chart 11: ECS Actual vs Inflation-Adjusted
+const ecsLabels = ['07-08','08-09','09-10','10-11','11-12','12-13','13-14','14-15','15-16','16-17','17-18','18-19','19-20','20-21','21-22','22-23','23-24','24-25'];
+const ecsActual = [12976438,13547231,13547231,11614515,13547231,13723859,13773810,13761528,13761528,13591055,13503310,12670601,12359179,12040218,12040218,12040218,12040218,12040218];
+const ecsInflAdj = [12976438,12924532,13145132,13560378,13832883,14040506,14274082,14287058,14468728,14767186,15130527,15403032,15597678,16337335,17634979,18361660,18828812,19205128];
+const ecsActualM = ecsActual.map(v => v/1e6);
+const ecsInflAdjM = ecsInflAdj.map(v => v/1e6);
+
+new Chart(document.getElementById('chart11'), {
+  type: 'line',
+  data: {
+    labels: ecsLabels,
+    datasets: [
+      {
+        label: 'Inflation-Adjusted ECS (Should Be)',
+        data: ecsInflAdjM,
+        borderColor: '#dc2626',
+        backgroundColor: 'rgba(220,38,38,0.08)',
+        borderWidth: 2.5,
+        borderDash: [6,4],
+        pointRadius: 3,
+        fill: false,
+        order: 1
+      },
+      {
+        label: 'Actual ECS Revenue',
+        data: ecsActualM,
+        borderColor: '#2563eb',
+        backgroundColor: 'rgba(37,99,235,0.15)',
+        borderWidth: 3,
+        pointRadius: 4,
+        fill: '+1',
+        order: 0
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } },
+      filler: { propagate: true }
+    },
+    scales: {
+      y: {
+        title: { display: true, text: 'ECS Revenue ($ Millions)' },
+        min: 10, max: 21,
+        grid: { color: '#f1f5f9' }
+      },
+      x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+    }
+  }
+});
+
+// Chart 12: ECS as % of BOE Budget
+const ecsPctBOE = [36.8,37.3,36.8,31.7,36.8,36.6,35.2,34.7,34.6,34.2,33.2,31.3,30.0,29.1,28.7,27.9,27.1,26.4];
+new Chart(document.getElementById('chart12'), {
+  type: 'bar',
+  data: {
+    labels: ecsLabels,
+    datasets: [{
+      label: 'ECS as % of BOE Budget',
+      data: ecsPctBOE,
+      backgroundColor: ecsLabels.map((_, i) => ecsPctBOE[i] >= 35 ? 'rgba(37,99,235,0.7)' : ecsPctBOE[i] >= 30 ? 'rgba(217,119,6,0.7)' : 'rgba(220,38,38,0.7)'),
+      borderRadius: 4
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `${ctx.parsed.y.toFixed(1)}% of BOE budget` } }
+    },
+    scales: {
+      y: {
+        title: { display: true, text: 'ECS as % of BOE Budget' },
+        min: 20, max: 40,
+        ticks: { callback: v => v + '%' },
+        grid: { color: '#f1f5f9' }
+      },
+      x: { grid: { display: false }, ticks: { maxRotation: 45 } }
     }
   }
 });
