@@ -1,0 +1,13 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# LibreOffice lock files
+.~lock.*
+
+# Temp files
+*.tmp
+*~
+
+# Old HTML file (replaced by src/index.html)
+Colchester_Budget_Charts.html

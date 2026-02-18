@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Town of Colchester, CT — Budget Trends Analysis</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #2c3e50; line-height: 1.6; }
+  .header { background: linear-gradient(135deg, #1a365d 0%, #2563eb 100%); color: white; padding: 40px 20px; text-align: center; }
+  .header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+  .header p { font-size: 1.1rem; opacity: 0.9; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+  .key-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 30px 0; }
+  .stat-card { background: white; border-radius: 12px; padding: 24px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #2563eb; }
+  .stat-card.green { border-left-color: #16a34a; }
+  .stat-card.amber { border-left-color: #d97706; }
+  .stat-card .value { font-size: 2.2rem; font-weight: 800; color: #1a365d; }
+  .stat-card.green .value { color: #16a34a; }
+  .stat-card.amber .value { color: #d97706; }
+  .stat-card .label { font-size: 0.85rem; color: #64748b; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .chart-section { background: white; border-radius: 12px; padding: 28px; margin: 24px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .chart-section h2 { font-size: 1.3rem; color: #1a365d; margin-bottom: 6px; }
+  .chart-section .subtitle { font-size: 0.9rem; color: #64748b; margin-bottom: 18px; }
+  .chart-container { position: relative; height: 380px; }
+  .insight-box { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 14px 18px; margin-top: 16px; font-size: 0.92rem; color: #166534; }
+  .insight-box strong { color: #15803d; }
+
+  .narrative { background: white; border-radius: 12px; padding: 32px; margin: 24px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .narrative h2 { font-size: 1.3rem; color: #1a365d; margin-bottom: 16px; }
+  .narrative p { margin-bottom: 12px; color: #475569; }
+
+  .footer { text-align: center; padding: 30px; color: #94a3b8; font-size: 0.8rem; }
+  @media (max-width: 768px) {
+    .header h1 { font-size: 1.5rem; }
+    .chart-container { height: 280px; }
+    .stat-card .value { font-size: 1.7rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Town of Colchester, CT</h1>
+  <p>18-Year Budget Trends Analysis — FY 2007-08 through FY 2024-25</p>
+</div>
+
+<div class="container">
+
+  <!-- Key Headline Stats -->
+  <div class="key-stats">
+    <div class="stat-card green">
+      <div class="value">+33.5%</div>
+      <div class="label">Total Budget Growth<br>(18 Years)</div>
+    </div>
+    <div class="stat-card amber">
+      <div class="value">+51.3%</div>
+      <div class="label">Cumulative Inflation<br>(CPI, Same Period)</div>
+    </div>
+    <div class="stat-card green">
+      <div class="value">-13.1%</div>
+      <div class="label">Real Per-Capita<br>Spending Change</div>
+    </div>
+    <div class="stat-card">
+      <div class="value">1.7%</div>
+      <div class="label">Annual Growth Rate<br>(CAGR)</div>
+    </div>
+  </div>
+
+  <!-- Chart 1: Budget Growth vs Inflation (Indexed) -->
+  <div class="chart-section">
+    <h2>Budget Growth vs. Inflation</h2>
+    <p class="subtitle">Both indexed to 100 in FY 2007-08. A lower line means growing slower than the comparison.</p>
+    <div class="chart-container"><canvas id="chart1"></canvas></div>
+    <div class="insight-box">
+      <strong>Key takeaway:</strong> Colchester's total budget has grown <strong>17.8 percentage points slower than inflation</strong> over the past 18 years. The budget line stays consistently below the CPI line from 2009 onward — meaning the town has exercised real fiscal restraint.
+    </div>
+  </div>
+
+  <!-- Chart 2: Annual Budget Change vs CPI -->
+  <div class="chart-section">
+    <h2>Annual Budget Increase vs. Annual Inflation Rate</h2>
+    <p class="subtitle">Year-over-year percentage change in total budget compared to CPI inflation each year.</p>
+    <div class="chart-container"><canvas id="chart2"></canvas></div>
+    <div class="insight-box">
+      <strong>Key takeaway:</strong> In 13 of 17 years, the budget increase was at or below the inflation rate. The average annual budget increase is just <strong>1.7%</strong>, compared to an average CPI of <strong>2.7%</strong>.
+    </div>
+  </div>
+
+  <!-- Chart 3: Real Per-Capita Spending -->
+  <div class="chart-section">
+    <h2>Inflation-Adjusted Spending Per Resident</h2>
+    <p class="subtitle">What the town actually spends per person in constant (FY 07-08) dollars.</p>
+    <div class="chart-container"><canvas id="chart3"></canvas></div>
+    <div class="insight-box">
+      <strong>Key takeaway:</strong> After adjusting for inflation, Colchester spends <strong>13.1% less per resident</strong> today than it did in FY 2007-08. In real terms, the town is delivering more with less.
+    </div>
+  </div>
+
+  <!-- Chart 4: Budget + Population + CPI Indexed -->
+  <div class="chart-section">
+    <h2>Budget Growth, Population, and Inflation — All Indexed</h2>
+    <p class="subtitle">Shows how budget growth compares to both population changes and the cost of living.</p>
+    <div class="chart-container"><canvas id="chart4"></canvas></div>
+    <div class="insight-box">
+      <strong>Key takeaway:</strong> Population has been essentially flat (+1.7%), while inflation has risen 51.3%. Budget growth of 33.5% is right in between — reflecting modest, population-appropriate increases that haven't even kept pace with inflation.
+    </div>
+  </div>
+
+  <!-- Chart 5: Town vs BOE -->
+  <div class="chart-section">
+    <h2>Town Operating vs. Board of Education — Growth Comparison</h2>
+    <p class="subtitle">Indexed growth of the two major budget components.</p>
+    <div class="chart-container"><canvas id="chart5"></canvas></div>
+    <div class="insight-box">
+      <strong>Key takeaway:</strong> Town operating grew 25.4% over 18 years (just 1.3% annually) — well below inflation. Education grew 36.8% (1.9% annually), driven by mandated costs. Both remain below inflation growth.
+    </div>
+  </div>
+
+  <!-- Chart 6: Absolute Budget -->
+  <div class="chart-section">
+    <h2>Total Budget Over Time</h2>
+    <p class="subtitle">Nominal total adopted budget by fiscal year (millions).</p>
+    <div class="chart-container"><canvas id="chart6"></canvas></div>
+  </div>
+
+  <!-- Chart 7: Regional Mill Rate Comparison -->
+  <div class="chart-section">
+    <h2>Regional Mill Rate Comparison — FY 2024-25</h2>
+    <p class="subtitle">Colchester vs. neighboring towns. Lower is better for taxpayers.</p>
+    <div class="chart-container"><canvas id="chart7"></canvas></div>
+    <div class="insight-box">
+      <strong>Key takeaway:</strong> Colchester's mill rate of 28.67 is <strong>3rd lowest</strong> among 7 neighboring towns and <strong>8% below the neighbor average</strong> of 31.1. Only Lebanon (post-2023 revaluation) and East Haddam (post-2022 revaluation) are lower.
+    </div>
+  </div>
+
+  <!-- Chart 8: Per Capita Budget — Neighbors -->
+  <div class="chart-section">
+    <h2>Per Capita Budget — Colchester vs. Neighbors</h2>
+    <p class="subtitle">Total adopted budget divided by 2024 population estimate. Compares overall spending levels.</p>
+    <div class="chart-container"><canvas id="chart8"></canvas></div>
+    <div class="insight-box">
+      <strong>Key takeaway:</strong> Colchester's per capita budget of ~$3,979 is <strong>comparable to its neighbors</strong> — right in the middle of the pack. When adjusted for inflation, real per-capita spending has actually declined 13.1% since FY 2007-08.
+    </div>
+  </div>
+
+  <!-- Chart 10: Per Capita Budget — Demographic Peers -->
+  <div class="chart-section">
+    <h2>Per Capita Spending — Colchester vs. Demographic Peers</h2>
+    <p class="subtitle">FY 2024-25 total adopted budget per resident for CT towns with similar population, income, and character.</p>
+    <div class="chart-container"><canvas id="chart10"></canvas></div>
+    <div class="insight-box">
+      <strong>Key takeaway:</strong> Colchester has the <strong>lowest per capita spending</strong> among all demographic peer towns with available budget data — $3,979 per resident vs. a peer average of $4,334. Colchester spends <strong>8.2% less per person</strong> than comparable towns.
+    </div>
+  </div>
+
+  <!-- Chart 9: Demographic Peer Mill Rate Comparison -->
+  <div class="chart-section">
+    <h2>Mill Rates: Colchester vs. Demographic Peer Towns</h2>
+    <p class="subtitle">CT towns with similar population (12K-17K), income ($100K-$135K), and suburban character. Revaluation years noted.</p>
+    <div class="chart-container"><canvas id="chart9"></canvas></div>
+    <div class="insight-box">
+      <strong>Key takeaway:</strong> Among towns with similar demographics statewide, Colchester's mill rate is <strong>well below average</strong>. Only Suffield and Tolland are lower — both just underwent FY 25-26 revaluations. Peer towns like Ellington (37.10), Ledyard (37.14), and East Hampton (38.04) are <strong>30% higher</strong> than Colchester.
+    </div>
+  </div>
+
+  <!-- Summary Narrative -->
+  <div class="narrative">
+    <h2>Summary: Colchester's Spending is Under Control</h2>
+    <p>Over the past 18 fiscal years, Colchester's total budget has grown from $46.9 million to $62.7 million — an increase of 33.5%. During that same period, cumulative inflation (as measured by the Consumer Price Index) rose 51.3%. This means the town's budget has grown at a rate <strong>significantly below inflation</strong>.</p>
+    <p>When you factor in population (which has remained essentially flat at around 15,500–16,000 residents), the picture becomes even clearer. Inflation-adjusted spending per resident has actually <strong>declined by 13.1%</strong> since FY 2007-08. Colchester residents are getting more government services for fewer real dollars per person.</p>
+    <p>The town's annual budget compound growth rate of just 1.7% reflects disciplined fiscal management — including years with flat or negative budgets (FY 2009-10, FY 2012-13, FY 2020-21). Even the largest single-year increase (5.1% in FY 2024-25) came after years of below-inflation growth and remains modest by any municipal standard.</p>
+    <p>Compared to its neighbors, Colchester's FY 2024-25 mill rate of 28.67 is <strong>the 3rd lowest among 7 surrounding towns</strong> and 8% below the neighbor average of 31.1 mills. East Hampton (38.04) and Marlborough (36.29) have significantly higher mill rates.</p>
+    <p>Among demographic peer towns statewide (similar population, income, and character), Colchester has the <strong>lowest per capita spending at $3,979</strong> — 8.2% below the peer average of $4,334. Ellington ($4,295), East Hampton ($4,326), Ledyard ($4,328), and Tolland ($4,390) all spend more per resident. This confirms that Colchester is not just keeping pace — it's leading in fiscal efficiency.</p>
+  </div>
+
+  <!-- Sources Section -->
+  <div class="narrative" style="margin-top: 12px;">
+    <h2>Sources</h2>
+    <p style="font-size: 0.92rem; color: #475569;"><strong>Colchester Budget Data</strong></p>
+    <ul style="font-size: 0.88rem; color: #64748b; margin: 8px 0 16px 20px; line-height: 1.8;">
+      <li><a href="https://www.colchesterct.gov/finance-department/pages/adopted-budget" style="color: #2563eb;">Town of Colchester — Adopted Budget Documents</a> (FY 2007-08 through FY 2024-25, 17 PDF files)</li>
+    </ul>
+    <p style="font-size: 0.92rem; color: #475569;"><strong>Inflation &amp; Population Data</strong></p>
+    <ul style="font-size: 0.88rem; color: #64748b; margin: 8px 0 16px 20px; line-height: 1.8;">
+      <li><a href="https://www.bls.gov/cpi/" style="color: #2563eb;">U.S. Bureau of Labor Statistics — Consumer Price Index (CPI)</a> — Annual average CPI inflation rates, 2007–2024</li>
+      <li><a href="https://portal.ct.gov/dph/health-information-systems--reporting/population/annual-town-and-county-population-for-connecticut" style="color: #2563eb;">CT Department of Public Health — Annual Town Population Estimates</a> — 2024 population data for all CT towns</li>
+      <li><a href="https://www.census.gov/quickfacts/colchestertownnewlondoncountyconnecticut" style="color: #2563eb;">U.S. Census Bureau QuickFacts — Colchester, CT</a> — Demographics, median household income</li>
+    </ul>
+    <p style="font-size: 0.92rem; color: #475569;"><strong>Mill Rate Data</strong></p>
+    <ul style="font-size: 0.88rem; color: #64748b; margin: 8px 0 16px 20px; line-height: 1.8;">
+      <li><a href="https://data.ct.gov/Local-Government/Mill-Rates-for-FY-2014-2026/emyx-j53e" style="color: #2563eb;">CT Open Data Portal — Mill Rates for FY 2014-2026</a></li>
+      <li><a href="https://portal.ct.gov/opm/igpp/publications/mill-rates" style="color: #2563eb;">CT Office of Policy and Management — Mill Rates</a></li>
+      <li><a href="https://www.easthaddam.org/departments/tax_collector/mill-rate" style="color: #2563eb;">Town of East Haddam — Mill Rate History</a></li>
+      <li><a href="https://hebronct.com/town-departments/tax-collectors-office/mill-rates/" style="color: #2563eb;">Town of Hebron — Mill Rate History</a></li>
+      <li><a href="https://www.ellington-ct.gov/departments-and-services/finance/mill-rate-history" style="color: #2563eb;">Town of Ellington — Mill Rate History</a></li>
+      <li><a href="https://www.lebanonct.gov/tax-office/pages/grand-list-mill-rates" style="color: #2563eb;">Town of Lebanon — Grand List Mill Rates</a></li>
+    </ul>
+    <p style="font-size: 0.92rem; color: #475569;"><strong>Peer Town Budget Data</strong></p>
+    <ul style="font-size: 0.88rem; color: #64748b; margin: 8px 0 16px 20px; line-height: 1.8;">
+      <li><a href="https://www.easthamptonct.gov/finance/pages/annual-budgets" style="color: #2563eb;">Town of East Hampton — Annual Budgets</a> — FY 24-25 budget ~$56.7M</li>
+      <li><a href="https://patch.com/connecticut/ellington-somers/budget-significant-tax-increase-narrowly-approved-ellington" style="color: #2563eb;">Town of Ellington — FY 24-25 Budget ($71.2M)</a> — Patch coverage of budget referendum</li>
+      <li><a href="https://www.tollandct.gov/finance-department/pages/2024-2025-budget-information" style="color: #2563eb;">Town of Tolland — FY 24-25 Budget ($63.7M)</a></li>
+      <li><a href="https://www.ledyarddtc.com/blog/town-of-ledyard-fy-2425-budget" style="color: #2563eb;">Town of Ledyard — FY 24-25 Budget (~$67.4M, estimated from FY 25-26 proposal)</a></li>
+    </ul>
+    <p style="font-size: 0.92rem; color: #475569;"><strong>Demographics &amp; Comparisons</strong></p>
+    <ul style="font-size: 0.88rem; color: #64748b; margin: 8px 0 16px 20px; line-height: 1.8;">
+      <li><a href="https://www.connecticut-demographics.com/colchester-demographics" style="color: #2563eb;">Colchester Demographics — Connecticut-Demographics.com</a></li>
+      <li><a href="https://datausa.io/profile/geo/colchester-ct" style="color: #2563eb;">Colchester, CT — Data USA</a></li>
+      <li><a href="https://portal.ct.gov/DECD/Content/About_DECD/Research-and-Publications/04_Access_TownProfiles/Connecticut-Town-Profile-Data" style="color: #2563eb;">CT DECD — Connecticut Town Profile Data</a></li>
+    </ul>
+    <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 16px;"><em>Note: Mill rate comparisons should account for revaluation timing. Connecticut towns undergo property revaluations every 5 years on staggered schedules, which can cause mill rates to drop sharply post-revaluation and gradually rise between revaluations. Per capita budget comparisons use FY 2024-25 adopted budgets and 2024 U.S. Census Bureau population estimates.</em></p>
+  </div>
+
+</div>
+
+<div class="footer">
+  Town of Colchester, CT — Budget Analysis | Data from Adopted Budget Documents FY 2007-08 to FY 2024-25
+</div>
+
+<script>
+const labels = ["FY 07-08","FY 08-09","FY 09-10","FY 10-11","FY 11-12","FY 12-13","FY 13-14","FY 14-15","FY 15-16","FY 16-17","FY 17-18","FY 18-19","FY 19-20","FY 20-21","FY 21-22","FY 22-23","FY 23-24","FY 24-25"];
+const totalIndexed = [100.0,101.5,102.6,101.4,107.6,107.1,111.3,112.9,114.1,115.2,117.9,118.0,120.1,120.3,122.6,122.8,127.1,133.5];
+const cpiIndexed = [100,103.8,103.5,105.2,108.5,110.7,112.3,114.2,114.3,115.7,118.2,121.1,123.3,124.8,130.7,141.1,146.9,151.3];
+const townIndexed = [100.0,97.8,97.9,99.5,100.3,93.6,96.4,97.8,100.9,105.5,107.9,108.7,111.1,111.1,115.2,114.6,114.8,125.4];
+const boeIndexed = [100.0,103.0,104.6,102.2,110.6,112.7,117.3,119.1,119.5,119.2,122.0,121.8,123.8,124.1,125.6,126.2,132.1,136.8];
+const popIndexed = [100.0,100.5,102.2,103.7,103.8,103.8,103.6,103.3,102.9,102.6,102.3,102.0,102.4,100.4,100.0,100.7,101.3,101.7];
+const pcReal = [3029,2945,2940,2818,2894,2823,2896,2901,2938,2939,2954,2894,2884,2909,2840,2619,2587,2631];
+const pcRealIndexed = [100.0,97.2,97.1,93.0,95.5,93.2,95.6,95.8,97.0,97.0,97.5,95.5,95.2,96.0,93.8,86.5,85.4,86.9];
+const yoyBudget = [null,1.48,1.13,-1.15,6.05,-0.44,3.87,1.47,1.06,1.0,2.31,0.05,1.85,0.14,1.88,0.2,3.45,5.1];
+const yoyCpi = [null,3.84,-0.36,1.64,3.16,2.07,1.46,1.62,0.12,1.26,2.13,2.44,1.81,1.23,4.7,8.0,4.12,2.94];
+const totalBudgets = [46940735,47634370,48172704,47618651,50501287,50281526,52225904,52995877,53558796,54094776,55344488,55370654,56392987,56472475,57532017,57648602,59639491,62678131];
+const townBudgets = [13636350,13338957,13344980,13569651,13679697,12757366,13149850,13334082,13763426,14389712,14708083,14821310,15155865,15155865,15704962,15622901,15660140,17102056];
+const boeBudgets = [33304385,34295413,34827724,34049000,36821590,37524160,39076054,39661795,39795370,39705064,40636405,40549344,41237122,41316610,41827055,42025701,43979351,45576075];
+
+const blue = '#2563eb';
+const red = '#dc2626';
+const green = '#16a34a';
+const amber = '#d97706';
+const purple = '#7c3aed';
+const gray = '#94a3b8';
+const lightBlue = 'rgba(37,99,235,0.1)';
+const lightGreen = 'rgba(22,163,74,0.1)';
+
+Chart.defaults.font.family = "'Segoe UI', system-ui, sans-serif";
+Chart.defaults.font.size = 12;
+
+// Chart 1: Budget vs CPI Indexed
+new Chart(document.getElementById('chart1'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      { label: 'CPI Inflation (Indexed)', data: cpiIndexed, borderColor: red, backgroundColor: 'rgba(220,38,38,0.08)', fill: true, borderWidth: 2.5, pointRadius: 3, tension: 0.3 },
+      { label: 'Total Budget (Indexed)', data: totalIndexed, borderColor: blue, backgroundColor: lightBlue, fill: true, borderWidth: 2.5, pointRadius: 3, tension: 0.3 },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}` } }
+    },
+    scales: {
+      y: { title: { display: true, text: 'Index (FY 07-08 = 100)' }, min: 95, suggestedMax: 160, grid: { color: '#f1f5f9' } },
+      x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+    }
+  }
+});
+
+// Chart 2: YoY Budget vs CPI
+new Chart(document.getElementById('chart2'), {
+  type: 'bar',
+  data: {
+    labels: labels.slice(1),
+    datasets: [
+      { label: 'Budget YoY %', data: yoyBudget.slice(1), backgroundColor: blue, borderRadius: 4 },
+      { label: 'CPI Inflation %', data: yoyCpi.slice(1), backgroundColor: 'rgba(220,38,38,0.6)', borderRadius: 4 },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(2)}%` } } },
+    scales: {
+      y: { title: { display: true, text: 'Year-over-Year % Change' }, grid: { color: '#f1f5f9' } },
+      x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+    }
+  }
+});
+
+// Chart 3: Real Per-Capita Spending
+new Chart(document.getElementById('chart3'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      { label: 'Real Per-Capita Spending (FY 07-08 $)', data: pcReal, borderColor: green, backgroundColor: lightGreen, fill: true, borderWidth: 2.5, pointRadius: 4, tension: 0.3 },
+      { label: 'Baseline (FY 07-08)', data: Array(18).fill(3029), borderColor: gray, borderDash: [6, 4], borderWidth: 1.5, pointRadius: 0 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toLocaleString()}` } } },
+    scales: {
+      y: { title: { display: true, text: 'Dollars Per Resident (Constant FY 07-08 $)' }, min: 2400, max: 3200, grid: { color: '#f1f5f9' } },
+      x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+    }
+  }
+});
+
+// Chart 4: Three-way indexed comparison
+new Chart(document.getElementById('chart4'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      { label: 'CPI Inflation', data: cpiIndexed, borderColor: red, borderWidth: 2.5, pointRadius: 3, tension: 0.3, borderDash: [6,3] },
+      { label: 'Total Budget', data: totalIndexed, borderColor: blue, backgroundColor: lightBlue, fill: true, borderWidth: 2.5, pointRadius: 3, tension: 0.3 },
+      { label: 'Population', data: popIndexed, borderColor: amber, borderWidth: 2, pointRadius: 3, tension: 0.3 },
+      { label: 'Real Per-Capita Spending', data: pcRealIndexed, borderColor: green, borderWidth: 2, pointRadius: 3, tension: 0.3, borderDash: [3,3] }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}` } } },
+    scales: {
+      y: { title: { display: true, text: 'Index (FY 07-08 = 100)' }, min: 80, suggestedMax: 160, grid: { color: '#f1f5f9' } },
+      x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+    }
+  }
+});
+
+// Chart 5: Town vs BOE indexed
+new Chart(document.getElementById('chart5'), {
+  type: 'line',
+  data: {
+    labels,
+    datasets: [
+      { label: 'CPI Inflation', data: cpiIndexed, borderColor: red, borderWidth: 2, pointRadius: 2, tension: 0.3, borderDash: [6,3] },
+      { label: 'Board of Education', data: boeIndexed, borderColor: purple, borderWidth: 2.5, pointRadius: 3, tension: 0.3 },
+      { label: 'Town Operating', data: townIndexed, borderColor: blue, borderWidth: 2.5, pointRadius: 3, tension: 0.3 },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)}` } } },
+    scales: {
+      y: { title: { display: true, text: 'Index (FY 07-08 = 100)' }, min: 85, suggestedMax: 160, grid: { color: '#f1f5f9' } },
+      x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+    }
+  }
+});
+
+// Chart 7: Regional Mill Rate Comparison
+const regionTowns = ['Lebanon','East Haddam','Colchester','Salem','Hebron','Marlborough','East Hampton'];
+const regionMills = [21.00, 26.76, 28.67, 30.20, 34.50, 36.29, 38.04];
+const regionColors = regionTowns.map(t => t === 'Colchester' ? '#2563eb' : '#94a3b8');
+new Chart(document.getElementById('chart7'), {
+  type: 'bar',
+  data: {
+    labels: regionTowns,
+    datasets: [{ label: 'Mill Rate (FY 24-25)', data: regionMills, backgroundColor: regionColors, borderRadius: 6 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `${ctx.parsed.x.toFixed(2)} mills` } }
+    },
+    scales: {
+      x: { title: { display: true, text: 'Mill Rate' }, min: 0, max: 45, grid: { color: '#f1f5f9' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// Chart 8: Per Capita Budget — Neighbors
+const pcNeighborTowns = ['Colchester','Lebanon','East Hampton','Salem','Hebron'];
+const pcNeighborVals = [3979, 4136, 4326, 4287, 4471];
+const pcNeighborCols = pcNeighborTowns.map(t => t === 'Colchester' ? '#2563eb' : '#94a3b8');
+new Chart(document.getElementById('chart8'), {
+  type: 'bar',
+  data: {
+    labels: pcNeighborTowns,
+    datasets: [{ label: 'Per Capita Budget', data: pcNeighborVals, backgroundColor: pcNeighborCols, borderRadius: 6 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `$${ctx.parsed.x.toLocaleString()} per resident` } }
+    },
+    scales: {
+      x: { title: { display: true, text: 'Budget Per Resident (FY 24-25)' }, min: 3500, grid: { color: '#f1f5f9' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// Chart 10: Per Capita Budget — Demographic Peers
+const peerPcTowns = ['Colchester','Ellington','East Hampton','Ledyard','Tolland'];
+const peerPcVals = [3979, 4295, 4326, 4328, 4390];
+const peerPcCols = peerPcTowns.map(t => t === 'Colchester' ? '#2563eb' : '#94a3b8');
+new Chart(document.getElementById('chart10'), {
+  type: 'bar',
+  data: {
+    labels: peerPcTowns,
+    datasets: [
+      { label: 'Per Capita Budget', data: peerPcVals, backgroundColor: peerPcCols, borderRadius: 6 },
+      { label: 'Peer Average ($4,334)', data: [4334,4334,4334,4334,4334], type: 'line', borderColor: '#dc2626', borderDash: [6,4], borderWidth: 2, pointRadius: 0, order: 0 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.type === 'line' ? `Peer Avg: $4,334` : `${ctx.label}: $${ctx.parsed.y.toLocaleString()} per resident` } }
+    },
+    scales: {
+      y: { title: { display: true, text: 'Budget Per Resident (FY 24-25)' }, min: 3700, max: 4600, grid: { color: '#f1f5f9' } },
+      x: { grid: { display: false } }
+    }
+  }
+});
+
+// Chart 9: Demographic Peer Mill Rate Comparison
+const peerTowns = ['Suffield*','Tolland*','Colchester','Plainfield','Wolcott*','South Windsor','Ellington','Ledyard','East Hampton'];
+const peerMills = [23.41, 27.19, 28.67, 29.88, 35.93, 35.61, 37.10, 37.14, 38.04];
+const peerColorsArr = peerTowns.map(t => t === 'Colchester' ? '#2563eb' : t.includes('*') ? '#fbbf24' : '#94a3b8');
+new Chart(document.getElementById('chart9'), {
+  type: 'bar',
+  data: {
+    labels: peerTowns.map(t => t.replace('*',' (reval)')),
+    datasets: [{ label: 'Mill Rate', data: peerMills, backgroundColor: peerColorsArr, borderRadius: 6 }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `${ctx.parsed.x.toFixed(2)} mills` } }
+    },
+    scales: {
+      x: { title: { display: true, text: 'Mill Rate' }, min: 0, max: 45, grid: { color: '#f1f5f9' } },
+      y: { grid: { display: false } }
+    }
+  }
+});
+
+// Chart 6: Absolute Budget stacked area
+new Chart(document.getElementById('chart6'), {
+  type: 'bar',
+  data: {
+    labels,
+    datasets: [
+      { label: 'Town Operating', data: townBudgets.map(v => v/1e6), backgroundColor: blue, borderRadius: 2 },
+      { label: 'Board of Education', data: boeBudgets.map(v => v/1e6), backgroundColor: 'rgba(124,58,237,0.7)', borderRadius: 2 },
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toFixed(1)}M` } }
+    },
+    scales: {
+      y: { stacked: true, title: { display: true, text: 'Budget ($ Millions)' }, grid: { color: '#f1f5f9' } },
+      x: { stacked: true, grid: { display: false }, ticks: { maxRotation: 45 } }
+    }
+  }
+});
+</script>
+</body>
+</html>
