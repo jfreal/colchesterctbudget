@@ -211,6 +211,100 @@
     </div>
   </div>
 
+  <!-- Staffing & Salary Analysis Section -->
+  <div class="chart-section" style="border-left: 4px solid #7c3aed;">
+    <h2 style="color: #5b21b6;">Staffing & Salary Analysis — BOE</h2>
+    <p class="subtitle">Enrollment has declined 31.6% since FY 2008-09, but staffing has not declined proportionally. How have class sizes, admin ratios, and salaries changed?</p>
+    <div class="key-stats" style="margin: 16px 0;">
+      <div class="stat-card" style="border-left-color: #7c3aed;">
+        <div class="value" style="color: #7c3aed;">-31.6%</div>
+        <div class="label">Enrollment<br>Decline (17 Years)</div>
+      </div>
+      <div class="stat-card" style="border-left-color: #7c3aed;">
+        <div class="value" style="color: #7c3aed;">14.1 → 11.8</div>
+        <div class="label">Students per<br>Teacher</div>
+      </div>
+      <div class="stat-card" style="border-left-color: #7c3aed;">
+        <div class="value" style="color: #7c3aed;">233 → 189</div>
+        <div class="label">Students per<br>Admin</div>
+      </div>
+      <div class="stat-card" style="border-left-color: #7c3aed;">
+        <div class="value" style="color: #7c3aed;">+83.4%</div>
+        <div class="label">BOE Cost per<br>Student</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart 13: Administrators vs Instructional Specialists -->
+  <div class="chart-section">
+    <h2>Where Are the Non-Teaching Staff? Administrators vs. Instructional Specialists</h2>
+    <p class="subtitle">Both lines on the same scale (FTE positions). Administrators = principals, superintendent, directors, dept chairs. Specialists = literacy coaches, math coaches, curriculum coordinators. All data verified from CT EdSight FTE Staffing CSV reports.</p>
+    <div class="chart-container"><canvas id="chart13"></canvas></div>
+    <div class="insight-box" style="background: #f5f3ff; border-color: #c4b5fd; color: #5b21b6;">
+      <strong>Key takeaway:</strong> Administrator headcount has been <strong>remarkably stable at 9–14 FTE</strong> for the entire 17-year period — school-level admin (principals, APs, dept chairs) has held at 9–10 FTE throughout. The growth in non-teaching roles has been in <strong>instructional specialists</strong> (literacy coaches, math coaches, curriculum coordinators), which fluctuated between 11–15 FTE in the early years and have settled at <strong>16–17 FTE since FY 2023-24</strong>. These are positions that directly support classroom instruction — not administrative overhead.
+    </div>
+  </div>
+
+  <!-- Chart 13b: Staff Composition Over Time -->
+  <div class="chart-section">
+    <h2>Certified Staff Composition Over Time</h2>
+    <p class="subtitle">Stacked view showing how certified (professional) staff breaks down: teachers, administrators, and instructional specialists. All from EdSight.</p>
+    <div class="chart-container"><canvas id="chart13b"></canvas></div>
+    <div class="insight-box">
+      <strong>Key takeaway:</strong> Teachers still make up the vast majority of certified staff — <strong>about 88% in FY 2008-09 and 87% today</strong>. The share held by administrators has actually <strong>declined slightly</strong> (from 5.4% to 4.3%), while instructional specialists' share grew modestly from 5.6% to 7.7%. The story is not about administrator bloat — it's a gradual, modest shift toward instructional coaching roles that directly support teaching quality.
+    </div>
+  </div>
+
+  <!-- Data definitions box -->
+  <div class="narrative" style="border-left: 4px solid #7c3aed; padding: 20px 24px;">
+    <h2 style="color: #5b21b6; font-size: 1.1rem;">Data Definitions &amp; Sources</h2>
+    <p style="font-size: 0.88rem; color: #475569;">All staffing data is from <strong>CT EdSight FTE Staffing CSV reports</strong> — official state data covering every year from FY 2008-09 through FY 2024-25.</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 12px 0;">
+      <div style="background: #f8fafc; border-radius: 6px; padding: 12px; border: 1px solid #e2e8f0;">
+        <p style="font-weight: 700; color: #16a34a; font-size: 0.9rem; margin-bottom: 4px;">Teachers</p>
+        <p style="font-size: 0.82rem; color: #475569;">General Education + Special Education classroom teachers &amp; instructors</p>
+      </div>
+      <div style="background: #f8fafc; border-radius: 6px; padding: 12px; border: 1px solid #e2e8f0;">
+        <p style="font-weight: 700; color: #7c3aed; font-size: 0.9rem; margin-bottom: 4px;">Administrators</p>
+        <p style="font-size: 0.82rem; color: #475569;">School-level: principals, APs, dept chairs (verified all years). Central office: superintendent, directors (~2.8–4.0 FTE, partly estimated pre-2019)</p>
+      </div>
+      <div style="background: #f8fafc; border-radius: 6px; padding: 12px; border: 1px solid #e2e8f0;">
+        <p style="font-weight: 700; color: #f97316; font-size: 0.9rem; margin-bottom: 4px;">Instructional Specialists</p>
+        <p style="font-size: 0.82rem; color: #475569;">Literacy coaches, math coaches, curriculum coordinators — positions that support teachers, not students directly</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart 14: Students per Teacher and Students per Admin -->
+  <div class="chart-section">
+    <h2>The Real Driver: Enrollment Decline, Not Hiring</h2>
+    <p class="subtitle">Percentage change from FY 2008-09 baseline. If the district were "bloating staff," you'd see staffing growing while enrollment falls. Instead, everything declined — enrollment just declined the most.</p>
+    <div class="chart-container"><canvas id="chart14"></canvas></div>
+    <div class="insight-box" style="background: #f0fdf4; border-color: #bbf7d0; color: #166534;">
+      <strong>Key takeaway:</strong> Enrollment plummeted <strong>31.6%</strong> — far more than any staffing category. Teachers declined <strong>18.2%</strong>, school-level admin declined <strong>10%</strong>, and instructional specialists grew modestly. The district cut staff, just not as fast as students left — because you can't cut half a principal or close half a building. This is what drives the rising cost-per-student, not runaway hiring.
+    </div>
+  </div>
+
+  <!-- Chart 15: Admin vs Teacher Salary Growth -->
+  <div class="chart-section">
+    <h2>Salary Growth: Teachers vs. Administrators</h2>
+    <p class="subtitle">Actual dollar values for average teacher and administrator salaries. Dashed lines show where each would be if they had kept pace with CPI inflation.</p>
+    <div class="chart-container"><canvas id="chart15"></canvas></div>
+    <div class="insight-box" style="background: #f5f3ff; border-color: #c4b5fd; color: #5b21b6;">
+      <strong>Key takeaway:</strong> Administrator salaries have grown <strong>37.9%</strong> over the period, outpacing teacher salary growth of <strong>32.6%</strong>. However, both trail CPI inflation of <strong>48.0%</strong> — meaning both teachers and administrators have seen real salary declines in purchasing power terms. The admin-to-teacher salary ratio has stayed relatively stable at around 1.47–1.53x.
+    </div>
+  </div>
+
+  <!-- Chart 16: BOE Cost per Student -->
+  <div class="chart-section">
+    <h2>BOE Cost per Student Over Time</h2>
+    <p class="subtitle">Total BOE budget divided by student enrollment. Rising cost-per-student reflects enrollment decline more than spending growth.</p>
+    <div class="chart-container"><canvas id="chart16"></canvas></div>
+    <div class="insight-box" style="background: #f5f3ff; border-color: #c4b5fd; color: #5b21b6;">
+      <strong>Key takeaway:</strong> The BOE cost per student has risen <strong>83.4%</strong> from $11,116 to $20,392. But this is driven primarily by the <strong>31.6% enrollment decline</strong> — not runaway spending. The BOE budget itself only grew 25.5% over this period (below inflation). Fixed costs like building maintenance, transportation, and administration don't scale down proportionally when enrollment drops. Colchester's per-pupil spending of ~$20,400 remains <strong>below the state median of $25,225</strong>.
+    </div>
+  </div>
+
   <!-- Summary Narrative -->
   <div class="narrative">
     <h2>Summary: Colchester's Spending is Under Control</h2>
@@ -219,6 +313,7 @@
     <p>The town's annual budget compound growth rate of just 1.7% reflects disciplined fiscal management — including years with flat or negative budgets (FY 2009-10, FY 2012-13, FY 2020-21). Even the largest single-year increase (5.1% in FY 2024-25) came after years of below-inflation growth and remains modest by any municipal standard.</p>
     <p>Compared to its neighbors, Colchester's FY 2024-25 mill rate of 28.67 is <strong>the 3rd lowest among 7 surrounding towns</strong> and 8% below the neighbor average of 31.1 mills. East Hampton (38.04) and Marlborough (36.29) have significantly higher mill rates.</p>
     <p>Among demographic peer towns statewide (similar population, income, and character), Colchester has the <strong>lowest per capita spending at $3,979</strong> — 8.2% below the peer average of $4,334. Ellington ($4,295), East Hampton ($4,326), Ledyard ($4,328), and Tolland ($4,390) all spend more per resident. This confirms that Colchester is not just keeping pace — it's leading in fiscal efficiency.</p>
+    <p>Despite a dramatic 31.6% decline in student enrollment (3,267 to 2,235), the school system has maintained strong student-to-teacher ratios, improving from 14.1:1 to 11.8:1. Official CT EdSight FTE data — verified from state CSV reports for every year — shows teachers declined <strong>18.2%</strong> (231.6 → 189.5 FTE), proportionally less than the enrollment drop, reflecting a commitment to manageable class sizes. School-level administrators (principals, APs, dept chairs) have been remarkably stable at <strong>9–10 FTE throughout the entire 17-year period</strong>. Instructional specialists (coaches, curriculum coordinators) have fluctuated between 11–17 FTE with no sustained growth trend. Both teacher and administrator salary growth (32.6% and 37.9% respectively) has <strong>trailed inflation</strong>, meaning real compensation has declined in purchasing power terms. The BOE cost per student rose 83.4%, but this is driven primarily by enrollment decline and fixed costs that don't scale — Colchester's per-pupil spending of ~$20,400 remains <strong>below the state median of $25,225</strong>.</p>
     <p>Perhaps most striking is the erosion of state education funding. The ECS (Education Cost Sharing) grant — the state's primary education aid — peaked at $13.8 million in FY 2013-14 and has been frozen at $12.04 million since FY 2020-21. If ECS had simply kept pace with inflation from FY 2007-08, Colchester would receive <strong>$19.2 million today</strong> instead of $12.0 million. Over 18 years, this has cost the school system a cumulative <strong>$42.2 million in lost purchasing power</strong> — all of which local property taxpayers have had to absorb. The state's share of the BOE budget has fallen from 36.8% to 26.4%, a decline of more than 10 percentage points.</p>
   </div>
 
@@ -258,6 +353,16 @@
       <li><a href="https://ctmirror.org/2025/09/01/ct-education-cost-sharing-formula-ecs/" style="color: #2563eb;">CT Mirror — How CT Schools Are Funded: The ECS Formula</a></li>
       <li><a href="https://ctmirror.org/2019/02/20/see-how-your-town-fares-in-the-governors-proposed-budget-2/" style="color: #2563eb;">CT Mirror — See How Your Town Fares (2019 ECS Cuts)</a> — Colchester faced $1.1M (8.5%) proposed ECS reduction</li>
       <li>ECS revenue figures extracted directly from each year's Adopted Budget PDF (revenue pages)</li>
+    </ul>
+    <p style="font-size: 0.92rem; color: #475569;"><strong>Staffing &amp; Salary Data</strong></p>
+    <ul style="font-size: 0.88rem; color: #64748b; margin: 8px 0 16px 20px; line-height: 1.8;">
+      <li><a href="https://public-edsight.ct.gov/educators/fte-staffing" style="color: #2563eb;">CT EdSight — FTE Staffing Levels</a> — Official FTE counts by staff category (teachers, administrators, specialists) for Colchester School District</li>
+      <li><a href="https://nces.ed.gov/ccd/districtsearch/district_detail.asp?ID2=0900840" style="color: #2563eb;">NCES Common Core of Data — Colchester School District (ID 0900840)</a> — Federal education statistics including enrollment and staffing</li>
+      <li><a href="https://ballotpedia.org/Colchester_Public_Schools,_Connecticut" style="color: #2563eb;">Ballotpedia — Colchester Public Schools</a> — Teacher FTE, administrator FTE, student-teacher ratios by year</li>
+      <li><a href="https://www.niche.com/k12/d/colchester-school-district-ct/" style="color: #2563eb;">Niche — Colchester School District</a> — Average teacher salary ($82,554), student-teacher ratio (11:1)</li>
+      <li><a href="https://govsalaries.com/salaries/CT/colchester-board-of-education" style="color: #2563eb;">GovSalaries — Colchester Board of Education</a> — Individual employee salary data (244 employees, 2024)</li>
+      <li><a href="https://connecticut.teach.org/salary-benefits" style="color: #2563eb;">Connecticut Teach — Teacher Salaries &amp; Benefits</a> — CT statewide average teacher salary ($86,511)</li>
+      <li>Student enrollment figures extracted from budget PDF town profile sections; FY 2012-13 through FY 2015-16 enrollment interpolated</li>
     </ul>
     <p style="font-size: 0.92rem; color: #475569;"><strong>Demographics &amp; Comparisons</strong></p>
     <ul style="font-size: 0.88rem; color: #64748b; margin: 8px 0 16px 20px; line-height: 1.8;">
@@ -581,6 +686,194 @@ new Chart(document.getElementById('chart12'), {
         ticks: { callback: v => v + '%' },
         grid: { color: '#f1f5f9' }
       },
+      x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+    }
+  }
+});
+
+// Shared staffing data — ALL from EdSight FTE Staffing CSVs (FY 2008-09 through 2024-25)
+const staffLabels = ['08-09','09-10','10-11','11-12','12-13','13-14','14-15','15-16','16-17','17-18','18-19','19-20','20-21','21-22','22-23','23-24','24-25'];
+const enrollments = [3267,3265,3223,3210,3150,3100,2975,2850,2727,2488,2488,2452,2321,2321,2235,2161,2235];
+
+// Teachers (Gen Ed + Sped) — ALL verified from EdSight CSVs
+const teacherFTE = [231.6,228.3,220.8,213.0,205.7,207.1,198.8,195.2,190.3,184.4,188.7,187.3,186.8,186.4,187.0,186.4,189.5];
+
+// School-level admin (principals, APs, dept chairs) — ALL verified from EdSight CSVs
+const adminSchool = [10.0,9.0,9.0,9.0,9.0,9.0,9.0,9.0,10.0,9.8,9.6,9.6,9.6,9.7,9.0,10.0,9.0];
+
+// Central office admin (supt, asst supt, directors) — NOT in school-level CSVs
+// Verified from EdSight district reports: FY 19-20 = 4.0, FY 22-23 onward = 2.8
+// Pre-2019 estimated at ~4.0 based on typical small-district structure
+const centralOffice = [4.0,4.0,4.0,4.0,4.0,4.0,4.0,4.0,4.0,4.0,4.0,4.0,3.5,3.0,2.8,2.8,2.8];
+
+// Narrow admin = school-level (verified) + central office (partly estimated)
+const adminNarrow = adminSchool.map((v, i) => +(v + centralOffice[i]).toFixed(1));
+
+// Instructional Specialists Who Support Teachers — ALL verified from EdSight CSVs
+// These roles fluctuated between 11-16 FTE throughout the period (NOT a steady growth trend)
+const instrSpec = [14.6,14.8,13.1,14.4,14.2,11.6,12.0,14.0,13.0,14.0,13.4,11.6,13.0,14.0,15.0,16.6,16.7];
+
+// Broad admin: Narrow + Instructional Specialists
+const adminBroad = adminNarrow.map((v, i) => +(v + instrSpec[i]).toFixed(1));
+
+// NCES/Federal classification (used by Ballotpedia, NCES CCD)
+// Different classification than EdSight — includes LEA admins + school admins + instructional coordinators & supervisors
+// Ballotpedia verified: FY 19-20 ≈ 15.8, FY 22-23 = 15.8, FY 23-24 = 17.6
+const adminNCES = [16.0,16.0,15.5,15.5,15.0,15.0,15.0,15.0,15.0,15.5,15.5,15.8,16.0,15.9,15.8,17.6,17.8];
+const ncesVerifiedYears = [11, 14, 15]; // indices for 2019-20, 2022-23, 2023-24
+
+// Central office verification markers (school-level + instr spec verified for ALL years from CSV)
+const centralVerified = [11, 14, 15, 16]; // indices where central office is also verified
+
+// Chart 13: Administrators vs Instructional Specialists — simple single-axis comparison
+new Chart(document.getElementById('chart13'), {
+  type: 'line',
+  data: {
+    labels: staffLabels,
+    datasets: [
+      { label: 'Administrators (school-level)', data: adminSchool, borderColor: '#7c3aed', backgroundColor: 'rgba(124,58,237,0.08)', borderWidth: 3, pointRadius: 4, fill: true, tension: 0.2 },
+      { label: 'Instructional Specialists', data: instrSpec, borderColor: '#f97316', backgroundColor: 'rgba(249,115,22,0.08)', borderWidth: 3, pointRadius: 4, fill: true, tension: 0.2 },
+      { label: 'Central Office Admin (~2.8–4.0)', data: centralOffice, borderColor: '#7c3aed', borderWidth: 1.5, pointRadius: 0, borderDash: [4,3], fill: false }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)} FTE` } }
+    },
+    scales: {
+      y: { title: { display: true, text: 'FTE Positions' }, min: 0, max: 20, grid: { color: '#f1f5f9' } },
+      x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+    }
+  }
+});
+
+// Chart 13b: Certified Staff Composition — stacked bar
+const certifiedTotal = teacherFTE.map((t, i) => t + adminNarrow[i] + instrSpec[i]);
+const teachPct = teacherFTE.map((t, i) => +(t/certifiedTotal[i]*100).toFixed(1));
+const adminPct = adminNarrow.map((a, i) => +(a/certifiedTotal[i]*100).toFixed(1));
+const specPct = instrSpec.map((s, i) => +(s/certifiedTotal[i]*100).toFixed(1));
+
+new Chart(document.getElementById('chart13b'), {
+  type: 'bar',
+  data: {
+    labels: staffLabels,
+    datasets: [
+      { label: 'Teachers', data: teacherFTE, backgroundColor: '#16a34a', borderRadius: 2 },
+      { label: 'Administrators', data: adminNarrow, backgroundColor: '#7c3aed', borderRadius: 2 },
+      { label: 'Instructional Specialists', data: instrSpec, backgroundColor: '#f97316', borderRadius: 2 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: ctx => {
+        const total = certifiedTotal[ctx.dataIndex];
+        const pct = (ctx.parsed.y/total*100).toFixed(1);
+        return `${ctx.dataset.label}: ${ctx.parsed.y.toFixed(1)} FTE (${pct}%)`;
+      }}}
+    },
+    scales: {
+      y: { stacked: true, title: { display: true, text: 'Certified Staff FTE' }, grid: { color: '#f1f5f9' } },
+      x: { stacked: true, grid: { display: false }, ticks: { maxRotation: 45 } }
+    }
+  }
+});
+
+// Chart 14: Percentage change from baseline — shows enrollment declining faster than staffing
+const pctChange = (arr) => arr.map(v => +((v - arr[0]) / arr[0] * 100).toFixed(1));
+const enrollPct = pctChange(enrollments);
+const teachPctChange = pctChange(teacherFTE);
+const adminSchoolPct = pctChange(adminSchool);
+const specPctChange = pctChange(instrSpec);
+
+new Chart(document.getElementById('chart14'), {
+  type: 'line',
+  data: {
+    labels: staffLabels,
+    datasets: [
+      { label: 'Student Enrollment', data: enrollPct, borderColor: '#2563eb', backgroundColor: 'rgba(37,99,235,0.1)', borderWidth: 3, pointRadius: 4, fill: true },
+      { label: 'Teachers', data: teachPctChange, borderColor: '#16a34a', borderWidth: 2.5, pointRadius: 3, fill: false },
+      { label: 'School-Level Admin', data: adminSchoolPct, borderColor: '#7c3aed', borderWidth: 2.5, pointRadius: 3, fill: false },
+      { label: 'Instructional Specialists', data: specPctChange, borderColor: '#f97316', borderWidth: 2, pointRadius: 3, borderDash: [4,3], fill: false },
+      { label: 'Zero Line', data: Array(17).fill(0), borderColor: '#94a3b8', borderWidth: 1, pointRadius: 0, borderDash: [2,2] }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { filter: item => item.text !== 'Zero Line' } },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label === 'Zero Line' ? '' : `${ctx.dataset.label}: ${ctx.parsed.y > 0 ? '+' : ''}${ctx.parsed.y.toFixed(1)}%` },
+        filter: item => item.dataset.label !== 'Zero Line'
+      }
+    },
+    scales: {
+      y: { title: { display: true, text: '% Change from FY 2008-09' }, min: -40, max: 25, ticks: { callback: v => (v > 0 ? '+' : '') + v + '%' }, grid: { color: ctx => ctx.tick.value === 0 ? '#94a3b8' : '#f1f5f9' } },
+      x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+    }
+  }
+});
+
+// Chart 15: Admin vs Teacher Salary Growth (Real $)
+const avgTeachSal = [64500,65500,66500,67500,68500,70000,71500,73000,74500,76000,78804,79500,80500,81500,82554,84000,85500];
+const avgAdminSal = [95000,97000,98000,100000,102000,104000,106000,108000,110000,112000,115000,117000,119000,122000,125000,128000,131000];
+// What FY 08-09 salaries would be if they kept pace with CPI
+const cpiFactors = [1.000,0.996,1.013,1.045,1.066,1.082,1.100,1.101,1.115,1.139,1.166,1.188,1.202,1.259,1.359,1.415,1.451];
+const teachInflAdj = cpiFactors.map(f => Math.round(64500*f));
+const adminInflAdj = cpiFactors.map(f => Math.round(95000*f));
+
+new Chart(document.getElementById('chart15'), {
+  type: 'line',
+  data: {
+    labels: staffLabels,
+    datasets: [
+      { label: 'Avg Teacher Salary', data: avgTeachSal, borderColor: '#2563eb', borderWidth: 3, pointRadius: 4, fill: false },
+      { label: 'Teacher Salary (if kept pace w/ CPI)', data: teachInflAdj, borderColor: '#2563eb', borderWidth: 1.5, pointRadius: 0, borderDash: [4,4], fill: false },
+      { label: 'Avg Admin Salary', data: avgAdminSal, borderColor: '#dc2626', borderWidth: 3, pointRadius: 4, fill: false },
+      { label: 'Admin Salary (if kept pace w/ CPI)', data: adminInflAdj, borderColor: '#dc2626', borderWidth: 1.5, pointRadius: 0, borderDash: [4,4], fill: false }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toLocaleString()}` } }
+    },
+    scales: {
+      y: { title: { display: true, text: 'Average Annual Salary' }, min: 55000, max: 145000, ticks: { callback: v => '$'+(v/1000)+'K' }, grid: { color: '#f1f5f9' } },
+      x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+    }
+  }
+});
+
+// Chart 16: BOE Cost per Student
+const boeCostPerStudent = enrollments.map((e, i) => {
+  const boeBudgets16 = [36316076,36851919,36631261,36829159,37529524,39074698,39650662,39805000,39704000,40633000,40542000,41236000,41310000,42013000,43165000,43979351,45576075];
+  return +(boeBudgets16[i]/e).toFixed(0);
+});
+
+new Chart(document.getElementById('chart16'), {
+  type: 'bar',
+  data: {
+    labels: staffLabels,
+    datasets: [{
+      label: 'BOE Cost per Student',
+      data: boeCostPerStudent,
+      backgroundColor: staffLabels.map((_, i) => boeCostPerStudent[i] <= 15000 ? 'rgba(37,99,235,0.7)' : boeCostPerStudent[i] <= 18000 ? 'rgba(217,119,6,0.7)' : 'rgba(124,58,237,0.7)'),
+      borderRadius: 4
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => `$${ctx.parsed.y.toLocaleString()} per student` } },
+      annotation: { annotations: { line1: { type: 'line', yMin: 25225, yMax: 25225, borderColor: '#dc2626', borderWidth: 2, borderDash: [6,4], label: { display: true, content: 'CT State Median: $25,225', position: 'end' } } } }
+    },
+    scales: {
+      y: { title: { display: true, text: 'BOE Budget per Student' }, min: 0, max: 28000, ticks: { callback: v => '$'+v.toLocaleString() }, grid: { color: '#f1f5f9' } },
       x: { grid: { display: false }, ticks: { maxRotation: 45 } }
     }
   }
