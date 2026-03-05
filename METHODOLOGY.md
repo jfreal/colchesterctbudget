@@ -1,114 +1,178 @@
-# Methodology
+# Colchester, CT Budget Analysis — Methodology
+
+## Overview
+
+This analysis examines 18 years of adopted budget data for the Town of Colchester, Connecticut (FY 2007-08 through FY 2024-25) to assess whether spending has been fiscally responsible. It covers the overall town budget, town government operations, and the Board of Education (BOE).
 
 ## Data Sources
 
-### 1. Colchester Budget Data (Primary Source)
-- **Source**: 17 adopted budget PDFs downloaded from https://www.colchesterct.gov/finance-department/pages/adopted-budget
-- **Coverage**: FY 2007-08 through FY 2024-25 (18 fiscal years)
-- **Extraction Method**: Python `pdfplumber` library used to extract text and tables from specific pages:
-  - "Budget In Brief" pages — for total budget, BOE/Town breakdown, mill rate
-  - "Budget Summary & Mill Rate Calculation" pages — for mill rate verification
-  - "Budget Summary by Function" pages — for department-level expenditure breakdowns
-- **Key Pages Targeted**: Each PDF was manually inspected to identify the correct pages containing summary data, as page numbers varied across years
+### Primary Sources
 
-### 2. CPI Inflation Data
-- **Source**: U.S. Bureau of Labor Statistics (BLS) — Consumer Price Index for All Urban Consumers (CPI-U)
-- **URL**: https://www.bls.gov/cpi/
-- **Data Used**: Annual average CPI rates, 2007–2024
-- **Values Used**:
-  ```
-  2007: 2.85%, 2008: 3.84%, 2009: -0.36%, 2010: 1.64%, 2011: 3.16%,
-  2012: 2.07%, 2013: 1.46%, 2014: 1.62%, 2015: 0.12%, 2016: 1.26%,
-  2017: 2.13%, 2018: 2.44%, 2019: 1.81%, 2020: 1.23%, 2021: 4.70%,
-  2022: 8.00%, 2023: 4.12%, 2024: 2.94%
-  ```
+1. **Colchester Adopted Budget PDFs (17 files)**
+   - Source: https://www.colchesterct.gov/finance-department/pages/adopted-budget
+   - Files: `BudgetPdfs/07-08adoptedbudget.pdf` through `BudgetPdfs/fy_24-25_adopted_budget.pdf`
+   - Note: FY 2023-24 budget PDF was not available; some values for that year are interpolated
+   - Extraction method: Python `pdfplumber` library for text extraction from budget detail pages
 
-### 3. Population Data
-- **Source**: CT Department of Public Health / U.S. Census Bureau Population Estimates Program
-- **URL**: https://portal.ct.gov/dph/health-information-systems--reporting/population/annual-town-and-county-population-for-connecticut
-- **Data Used**: Annual town population estimates for Colchester and peer towns, 2007–2024
-- **Colchester Values**:
-  ```
-  2007: 15,495  2008: 15,578  2009: 15,838  2010: 16,068  2011: 16,087
-  2012: 16,087  2013: 16,050  2014: 16,000  2015: 15,950  2016: 15,900
-  2017: 15,850  2018: 15,800  2019: 15,861  2020: 15,555  2021: 15,501
-  2022: 15,600  2023: 15,690  2024: 15,752
-  ```
-- **Note**: 2013–2018 and 2022–2023 values are interpolated estimates between Census/ACS anchor points
+2. **CT EdSight FTE Staffing CSV Reports (19 files)**
+   - Source: https://public-edsight.ct.gov/educators/fte-staffing
+   - Files: `StaffLevels/FTEStaffing.csv` through `StaffLevels/FTEStaffing (18).csv`
+   - Coverage: FY 2001-02 through FY 2025-26 (though only FY 2008-09 onward used in charts)
+   - Format: First line is "FTE Staffing Report for YYYY-YY", then CSV with columns: District, School, Assignment Category, Educator Type, FTE Count
+   - Important: These are school-level only — central office administrators (superintendent, directors) are NOT included in EdSight data
 
-### 4. Mill Rate Data (Neighboring & Peer Towns)
-- **Primary Source**: CT Open Data Portal — Mill Rates for FY 2014-2026 (https://data.ct.gov/Local-Government/Mill-Rates-for-FY-2014-2026/emyx-j53e)
-- **Secondary Sources**: Individual town websites for historical mill rates:
-  - East Haddam: https://www.easthaddam.org/departments/tax_collector/mill-rate
-  - Hebron: https://hebronct.com/town-departments/tax-collectors-office/mill-rates/
-  - Ellington: https://www.ellington-ct.gov/departments-and-services/finance/mill-rate-history
-  - Lebanon: https://www.lebanonct.gov/tax-office/pages/grand-list-mill-rates
-- **CT OPM**: https://portal.ct.gov/opm/igpp/publications/mill-rates
+3. **U.S. Bureau of Labor Statistics — Consumer Price Index (CPI)**
+   - Source: https://www.bls.gov/cpi/
+   - Used: Annual average CPI-U (All Urban Consumers, U.S. City Average)
+   - Annual CPI rates used:
+     ```
+     2007: 2.85%, 2008: 3.84%, 2009: -0.36%, 2010: 1.64%, 2011: 3.16%,
+     2012: 2.07%, 2013: 1.46%, 2014: 1.62%, 2015: 0.12%, 2016: 1.26%,
+     2017: 2.13%, 2018: 2.44%, 2019: 1.81%, 2020: 1.23%, 2021: 4.70%,
+     2022: 8.00%, 2023: 4.12%, 2024: 2.94%
+     ```
+   - Cumulative CPI inflation FY 2007-08 to FY 2024-25: 51.3%
 
-### 5. Peer Town Budget & Demographic Data
-- **Demographics**: U.S. Census Bureau QuickFacts, Connecticut-Demographics.com, Data USA
-- **Budgets**: Individual town budget documents and news coverage of budget referendums
-  - East Hampton: https://www.easthamptonct.gov/finance/pages/annual-budgets (~$56.7M)
-  - Ellington: Budget referendum coverage ($71.2M)
-  - Tolland: Town budget information page ($63.7M)
-  - Ledyard: Estimated from FY 25-26 proposal ($71.1M ÷ 1.0539 ≈ $67.4M)
+4. **CT Open Data Portal — Mill Rates**
+   - Source: https://data.ct.gov/Local-Government/Mill-Rates-for-FY-2014-2026/emyx-j53e
+   - Used for: Colchester and neighboring/peer town mill rate comparisons
 
-## Data Extraction Process
+5. **Population Data**
+   - Source: CT Department of Public Health / U.S. Census Bureau Population Estimates Program
+   - URL: https://portal.ct.gov/dph/health-information-systems--reporting/population/annual-town-and-county-population-for-connecticut
+   - Colchester values (some years interpolated):
+     ```
+     2007: 15,495  2008: 15,578  2009: 15,838  2010: 16,068  2011: 16,087
+     2012: 16,087  2013: 16,050  2014: 16,000  2015: 15,950  2016: 15,900
+     2017: 15,850  2018: 15,800  2019: 15,861  2020: 15,555  2021: 15,501
+     2022: 15,600  2023: 15,690  2024: 15,752
+     ```
 
-### Step 1: PDF Download
-All 17 budget PDFs were downloaded from the Colchester town website into `BudgetPdfs/`.
+### Secondary/Verification Sources
 
-### Step 2: Manual Targeted Extraction
-Each PDF was processed individually using `pdfplumber` to extract:
-- **Total Budget** (Education + Town Operating + Debt Service + Transfers)
-- **BOE Budget** (Board of Education)
-- **Town Budget** (Town Operating, calculated as Total minus BOE)
-- **Mill Rate** (from Budget Summary & Mill Rate Calculation pages)
-- **Department Expenditures** (from Budget Summary by Function tables):
-  - General Government
-  - Public Safety
-  - Public Works
-  - Community & Human Services (combined "Human Services" + "Civic & Cultural" for pre-FY 12-13)
-  - Debt Service
-  - Transfers/Capital
+- **NCES Common Core of Data** — Colchester School District (ID 0900840): https://nces.ed.gov/ccd/districtsearch/district_detail.asp?ID2=0900840
+- **Ballotpedia** — Colchester Public Schools: https://ballotpedia.org/Colchester_Public_Schools,_Connecticut
+- **GovSalaries.com** — Colchester BOE employee salary data (244 employees, 2024)
+- **Niche.com** — Average teacher salary ($82,554), student-teacher ratio
+- **ConnecticutTeach.org** — CT statewide average teacher salary ($86,511)
+- **CT SDE Press Release PR-102** — Statewide staffing increase data: https://portal.ct.gov/sde/press-room/press-releases/2023/pr-102-increase-school-staffing
+- **CT Mirror** — ESSER funding cliff reporting: https://ctmirror.org/2024/06/02/ct-arpa-esser-school-funding-end/
+- **NCTQ** — National paraprofessional staffing trends: https://www.nctq.org/research-insights/paraprofessional-and-educator-support-role-staffing-has-increased-to-the-benefit-of-students-and-teachers-but-will-it-last/
+- **East Haddam, Hebron, Ellington, Lebanon** town websites — Historical mill rates
+- **East Hampton, Ellington, Tolland, Ledyard** — Peer town budget documents
 
-### Step 3: Cross-Verification
-- Mill rates were cross-verified between "Budget In Brief" and "Mill Rate Calculation" pages
-- Budget totals were verified against prior-year references in subsequent budgets
-- FY 2023-24 BOE budget was calculated from: Total ($59,639,491) minus Town ($15,660,140) = $43,979,351
+## Data Extraction Methods
 
-### Step 4: Excel Construction
-- Built using Python `openpyxl` library
-- All calculations use Excel formulas (not hardcoded values) for auditability
-- Blue font = hardcoded inputs; Black font = formulas (financial modeling standard)
-- Recalculated using LibreOffice to verify all formulas evaluate correctly
+### Budget Data (from PDFs)
 
-### Step 5: Chart Generation
-- HTML page built with Chart.js 4.4.1 (CDN)
-- All data embedded directly in JavaScript (no external dependencies)
-- Charts are interactive (hover tooltips, responsive sizing)
+Budget figures were extracted using Python's `pdfplumber` library:
 
-## Known Limitations & Caveats
+1. Each PDF was opened and text extracted page by page
+2. Budget summary pages were identified by keywords: "TOTAL BUDGET", "BOARD OF EDUCATION", "BUDGET SUMMARY BY FUNCTION"
+3. Dollar amounts parsed using regex for formats like `$1,234,567` or `1,234,567`
+4. FY 07-08 and 08-09 budgets contained detailed BOE breakdowns (Salaries, Employee Benefits, Transportation, etc.); later budgets show BOE as a lump sum
+5. Town insurance extracted from budget code 41211 (Health Insurance) and "Total Legal & Insurances" lines
+6. Multi-year comparison tables in budget narratives used to fill gaps in health insurance data
 
-1. **Mill Rate Comparisons**: Connecticut towns undergo property revaluations every 5 years on staggered schedules. A revaluation increases the grand list (total assessed value), which allows for a lower mill rate even if the budget stays the same. Comparing mill rates across towns requires noting each town's last revaluation year.
+Extraction scripts used:
+- `extract_benefits.py` — All PDFs searched for benefits/insurance keywords (1,915 matches)
+- `extract_boe_benefits.py` — BOE employee benefits totals
+- `search_paras.py` — Paraprofessional references
+- `search_asst_supt.py` — Assistant superintendent references
 
-2. **Population Estimates (2013–2018)**: Some years between Census anchor points use interpolated estimates. These are close approximations but not exact counts.
+### Staffing Data (from EdSight CSVs)
 
-3. **Peer Town Budget Data**: Some peer town budgets (Wolcott, Suffield, Plainfield) were not publicly available in searchable form. Per capita comparisons include only towns with confirmed budget figures.
+Parsed using Python's `csv` module via `parse_edsight.py`:
 
-4. **Department Category Changes**: Colchester reorganized department categories around FY 2012-13. "Human Services" and "Civic & Cultural" were combined into "Community & Human Services." Pre-FY 12-13 data combines these categories for consistency.
+1. Each CSV's first line contains "FTE Staffing Report for YYYY-YY" — year extracted via regex
+2. FTE counts aggregated by Assignment Category across all schools
+3. Schools included: Bacon Academy, Colchester Elementary, Jack Jackter Intermediate, William J. Johnston Middle, plus alternative/transition programs in some years
+4. Special education analysis via `sped_analysis.py` broke out sped teachers, sped paras, gen ed teachers separately
 
-5. **FY 2010-11 and FY 2011-12 Special Notes**: These years included federal grants ($1.9M State Stabilization and $550K Jobs Bill) that were sometimes excluded from BOE cross-references in budget documents.
+### EdSight Assignment Categories
 
-6. **East Haddam Mill Rate Mapping**: East Haddam's website lists mill rates by Grand List year (October 1 date). The mapping to fiscal year is: GL 10/1/XXXX → FY (XXXX+1)-(XXXX+2). For example, GL 10/1/2022 → FY 2023-24.
+| EdSight Category | Our Label | Notes |
+|---|---|---|
+| General Education - Teachers and Instructors | Gen Ed Teachers | Classroom teachers |
+| Special Education - Teachers and Instructors | Sped Teachers | Special ed teachers |
+| Administrators Coordinators and Department Chairs - School Level | School Admin | Principals, APs, dept chairs |
+| Instructional Specialists Who Support Teachers | Instr Specialists | Coaches, curriculum coordinators |
+| Counselors Social Workers and School Psychologists | Counselors/Psych | |
+| School Nurses | Nurses | |
+| General Education - Paraprofessional Instructional Assistants | Gen Ed Paras | Major ESSER jump FY 24-25 |
+| Special Education - Paraprofessional Instructional Assistants | Sped Paras | Grew 30% |
+| Library/Media - Specialists (Certified) + Support Staff | Library/Media | Combined |
+| Other Staff Providing Non-Instructional Services/Support | Other Non-Instr | Custodial, food service, etc. |
+
+### Central Office Administration
+
+EdSight only reports school-level data. Central office administrators (superintendent, directors) estimated at 2.8-4.0 FTE based on budget org charts, GovSalaries.com records, and known superintendent names from budget documents.
+
+## Analysis Methods
+
+### Inflation Adjustment
+
+CPI factors relative to FY 2007-08 (base = 1.000):
+```
+[1.000, 1.038, 1.035, 1.052, 1.085, 1.107, 1.123, 1.142, 1.143, 1.157, 1.182, 1.211, 1.233, 1.248, 1.307, 1.411, 1.469, 1.513]
+```
+
+### Indexed Comparisons
+
+Base year = 100, allowing comparison of growth rates across different magnitudes on the same axis.
+
+### Per Capita Calculations
+
+Real per-capita spending = (Total Budget / Population) / CPI Factor
+
+### Peer Town Selection
+
+Two comparison groups:
+1. **Neighbors** (geographic): Hebron, East Haddam, East Hampton, Marlborough, Lebanon, Salem, Bozrah
+2. **Demographic peers** (statewide): Population 12K-17K, median income $100K-$135K — Ellington, East Hampton, Ledyard, Tolland, Suffield
+
+### Mill Rate Caveats
+
+CT towns revalue property every 5 years on staggered schedules. A revaluation raises the grand list, allowing a lower mill rate for the same revenue. Always note revaluation years when comparing.
+
+## Key Corrections Made During Analysis
+
+1. **Staffing estimates vs. actuals**: Initial staffing was estimated from budget documents. When actual EdSight CSVs were provided, significant corrections were needed — teachers were overestimated by 5-16 FTE, and instructional specialists were already at 14.6 FTE in FY 08-09 (not growing from 6 as initially estimated). The "specialists tripling" narrative was incorrect.
+
+2. **Gen Ed Paraprofessional spike (FY 24-25)**: A 170% single-year jump (33 to 89 FTE) was investigated. "Other Non-Instructional" did NOT decline, confirming these were real new positions (not reclassification). Attributed to federal ESSER/ARPA COVID relief funding based on: statewide 12% Gen Ed Para increase (CT SDE PR-102), ESSER III obligation deadline of Sept 30 2024 aligning with FY 24-25, national NCTQ data on ESSER-funded paraprofessional hiring, and CT Mirror reporting on the ESSER cliff.
+
+3. **FY 23-24 data gaps**: Budget PDF not available. Insurance and some budget values interpolated. Staffing data available from EdSight CSVs.
 
 ## Reproducibility
 
-To regenerate this analysis from scratch:
+To reproduce from scratch:
 
 1. Download budget PDFs from https://www.colchesterct.gov/finance-department/pages/adopted-budget
-2. Extract data using `pdfplumber` targeting "Budget In Brief" and "Budget Summary by Function" pages
-3. Compile CPI data from https://www.bls.gov/cpi/
-4. Compile population data from CT DPH annual estimates
-5. Build Excel workbook with `openpyxl` and verify with LibreOffice recalculation
-6. Generate HTML charts using Chart.js with embedded data
+2. Download FTE Staffing CSVs from https://public-edsight.ct.gov/educators/fte-staffing (filter for Colchester, download each year)
+3. Download CPI data from https://www.bls.gov/cpi/data.htm (annual averages, CPI-U)
+4. Download mill rates from https://data.ct.gov/Local-Government/Mill-Rates-for-FY-2014-2026/emyx-j53e
+5. Run `parse_edsight.py` to extract staffing data
+6. Run `sped_analysis.py` for special education analysis
+7. Use `pdfplumber` to extract budget figures from PDFs
+8. Build Excel with `openpyxl`, verify with LibreOffice recalculation
+9. Build HTML with Chart.js 4.4.1
+
+## Tools Used
+
+- Python 3 with `pdfplumber`, `openpyxl`, `csv`
+- Chart.js 4.4.1 (CDN) for interactive charts
+- LibreOffice Calc for Excel formula verification
+- Claude AI (Anthropic) for data analysis, chart design, and narrative
+
+## Files Produced
+
+| File | Description |
+|---|---|
+| `src/index.html` | Primary deliverable — 19 interactive charts in 3 sections |
+| `Colchester_Budget_Charts.html` | Backup copy of HTML |
+| `Colchester_CT_Budget_Analysis.xlsx` | Excel workbook, 6 sections, 1,193 formulas |
+| `StaffLevels/*.csv` | Raw EdSight CSV downloads (19 files) |
+| `BudgetPdfs/*.pdf` | Raw budget PDFs (17 files) |
+| `methodology.md` | This file |
+| `data-dictionary.md` | All data arrays, definitions, sources |
+| `findings-summary.md` | Key findings and narrative |

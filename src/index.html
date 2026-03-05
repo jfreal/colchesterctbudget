@@ -70,6 +70,11 @@
     </div>
   </div>
 
+  <div style="margin: 40px 0 20px 0; padding: 16px 24px; background: linear-gradient(135deg, #1a365d 0%, #1a365ddd 100%); border-radius: 12px; text-align: center;">
+    <h2 style="color: white; font-size: 1.5rem; margin: 0; font-weight: 700;">Overall Budget Trends</h2>
+  </div>
+
+
   <!-- Chart 1: Budget Growth vs Inflation (Indexed) -->
   <div class="chart-section">
     <h2>Budget Growth vs. Inflation</h2>
@@ -110,6 +115,18 @@
     </div>
   </div>
 
+  <!-- Chart 6: Absolute Budget -->
+  <div class="chart-section">
+    <h2>Total Budget Over Time</h2>
+    <p class="subtitle">Nominal total adopted budget by fiscal year (millions).</p>
+    <div class="chart-container"><canvas id="chart6"></canvas></div>
+  </div>
+
+  <div style="margin: 40px 0 20px 0; padding: 16px 24px; background: linear-gradient(135deg, #065f46 0%, #065f46dd 100%); border-radius: 12px; text-align: center;">
+    <h2 style="color: white; font-size: 1.5rem; margin: 0; font-weight: 700;">Town Government</h2>
+  </div>
+
+
   <!-- Chart 5: Town vs BOE -->
   <div class="chart-section">
     <h2>Town Operating vs. Board of Education — Growth Comparison</h2>
@@ -118,13 +135,6 @@
     <div class="insight-box">
       <strong>Key takeaway:</strong> Town operating grew 25.4% over 18 years (just 1.3% annually) — well below inflation. Education grew 36.8% (1.9% annually), driven by mandated costs. Both remain below inflation growth.
     </div>
-  </div>
-
-  <!-- Chart 6: Absolute Budget -->
-  <div class="chart-section">
-    <h2>Total Budget Over Time</h2>
-    <p class="subtitle">Nominal total adopted budget by fiscal year (millions).</p>
-    <div class="chart-container"><canvas id="chart6"></canvas></div>
   </div>
 
   <!-- Chart 7: Regional Mill Rate Comparison -->
@@ -166,6 +176,21 @@
       <strong>Key takeaway:</strong> Among towns with similar demographics statewide, Colchester's mill rate is <strong>well below average</strong>. Only Suffield and Tolland are lower — both just underwent FY 25-26 revaluations. Peer towns like Ellington (37.10), Ledyard (37.14), and East Hampton (38.04) are <strong>30% higher</strong> than Colchester.
     </div>
   </div>
+
+  <!-- Chart 15b: Town Insurance Costs -->
+  <div class="chart-section">
+    <h2>Town Insurance Costs: Health, Workers' Comp &amp; Liability</h2>
+    <p class="subtitle">Town-side insurance budget (health insurance, workers' compensation, property/liability, unemployment). This covers ~85 town employees — the BOE manages its own benefits separately. All amounts from adopted budget line items.</p>
+    <div class="chart-container"><canvas id="chart15b"></canvas></div>
+    <div class="insight-box" style="background: #fefce8; border-color: #fde68a; color: #854d0e;">
+      <strong>Key takeaway:</strong> Town health insurance grew <strong>54.1%</strong> ($729K → $1.12M) — roughly tracking CPI inflation (51.3%). Total town insurance costs grew <strong>61.5%</strong> ($1.25M → $2.02M), with <strong>workers' compensation</strong> as the faster-growing component. Insurance as a share of the town operating budget rose from <strong>7.4% to 9.9%</strong>. The volatility in health insurance costs reflects active cost management — the town renegotiated plan designs multiple times, producing significant savings in FY 2012-13, FY 2014-15, and FY 2015-16 before costs climbed again. The BOE's employee benefits (separate from this budget) were $4.49M in FY 2007-08 (13.5% of the BOE budget). Detailed BOE benefits breakdowns are not available in the town budget documents for later years.
+    </div>
+  </div>
+
+  <div style="margin: 40px 0 20px 0; padding: 16px 24px; background: linear-gradient(135deg, #5b21b6 0%, #5b21b6dd 100%); border-radius: 12px; text-align: center;">
+    <h2 style="color: white; font-size: 1.5rem; margin: 0; font-weight: 700;">Board of Education</h2>
+  </div>
+
 
   <!-- ECS Analysis Section -->
   <div class="chart-section" style="border-left: 4px solid #dc2626;">
@@ -285,6 +310,16 @@
     </div>
   </div>
 
+  <!-- Chart 14b: Special Education Staffing Growth -->
+  <div class="chart-section">
+    <h2>Special Education: The Fastest-Growing Cost Driver</h2>
+    <p class="subtitle">Special education staffing (teachers + paraprofessionals) has grown even as overall enrollment declined. All data verified from CT EdSight FTE Staffing CSV reports.</p>
+    <div class="chart-container"><canvas id="chart14b"></canvas></div>
+    <div class="insight-box" style="background: #fef2f2; border-color: #fecaca; color: #991b1b;">
+      <strong>Key takeaway:</strong> Special education staffing <strong>grew 21.6%</strong> (76.5 → 93.0 FTE) while total enrollment <strong>dropped 31.6%</strong>. The biggest driver is <strong>sped paraprofessionals</strong>, which grew 30% (50 → 65 FTE). Sped teachers held steady (+5.7%), while gen ed teachers were cut 21.3%. Special education now accounts for <strong>nearly 20% of all district staff</strong>, up from 17.4% in FY 2008-09. This reflects growing federal and state mandates, rising identification rates, and the fact that sped services can't be reduced when enrollment drops — they're driven by individual student needs, not class size.
+    </div>
+  </div>
+
   <!-- Chart 15: Admin vs Teacher Salary Growth -->
   <div class="chart-section">
     <h2>Salary Growth: Teachers vs. Administrators</h2>
@@ -371,6 +406,15 @@
       <li><a href="https://portal.ct.gov/DECD/Content/About_DECD/Research-and-Publications/04_Access_TownProfiles/Connecticut-Town-Profile-Data" style="color: #2563eb;">CT DECD — Connecticut Town Profile Data</a></li>
     </ul>
     <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 16px;"><em>Note: Mill rate comparisons should account for revaluation timing. Connecticut towns undergo property revaluations every 5 years on staggered schedules, which can cause mill rates to drop sharply post-revaluation and gradually rise between revaluations. Per capita budget comparisons use FY 2024-25 adopted budgets and 2024 U.S. Census Bureau population estimates. ECS figures extracted directly from each year's adopted budget PDF revenue pages. FY 2010-11 ECS was reduced due to state budget cuts ($1.93M offset by federal ARRA funds). Colchester is classified as "overfunded" under the ECS formula and has been "held harmless" (frozen) since FY 2020-21. FY 2023-24 ECS amount assumed same as FY 2022-23 per hold-harmless provision.</em></p>
+  </div>
+
+  <!-- Note on Gen Ed Paraprofessional staffing jump -->
+  <div class="narrative" style="margin-top: 12px; background: #fffbeb; border: 1px solid #fde68a;">
+    <h2 style="color: #92400e;">A Note on General Education Paraprofessional Staffing (FY 2024-25)</h2>
+    <p style="font-size: 0.92rem; color: #78350f;">EdSight data shows that Colchester's General Education Paraprofessional headcount jumped from <strong>33 FTE in FY 2023-24 to 89 FTE in FY 2024-25</strong> — a 170% single-year increase. This jump occurred at every school in the district: Colchester Elementary (14 → 35), Jack Jackter Intermediate (8 → 26), Johnston Middle (4 → 16), and Bacon Academy (5 → 10). Importantly, the "Other Non-Instructional Staff" category did <em>not</em> decline (it went from 66.3 to 73.2 FTE), so this does not appear to be a reclassification — it represents actual additional positions.</p>
+    <p style="font-size: 0.92rem; color: #78350f;"><strong>This was not unique to Colchester.</strong> The Connecticut State Department of Education reported a <strong>statewide 12% increase</strong> in Gen Ed Paraprofessional Instructional Assistants between 2018-19 and 2021-22 (<a href="https://portal.ct.gov/sde/press-room/press-releases/2023/pr-102-increase-school-staffing" style="color: #92400e;">SDE Press Release PR-102</a>). Nationally, the National Council on Teacher Quality documented consistent growth in paraprofessional roles over the last decade, with nearly <strong>50% of federal ESSER III funds going to labor costs</strong> including tutors, paraprofessionals, and support staff (<a href="https://www.nctq.org/research-insights/paraprofessional-and-educator-support-role-staffing-has-increased-to-the-benefit-of-students-and-teachers-but-will-it-last/" style="color: #92400e;">NCTQ analysis</a>).</p>
+    <p style="font-size: 0.92rem; color: #78350f;">The most likely explanation is <strong>federal ESSER/ARPA COVID relief funding</strong>. Connecticut received nearly $1.7 billion in ESSER funds across three rounds, and districts were required to spend ESSER III funds by September 30, 2024 — aligning exactly with the FY 2024-25 staffing spike. These positions are likely <strong>temporary</strong>. The CT Mirror reported that <a href="https://ctmirror.org/2024/06/02/ct-arpa-esser-school-funding-end/" style="color: #92400e;">paraeducators, mental health professionals, and tutors are the positions most likely to be cut</a> as ESSER funding expires. The FY 2025-26 EdSight data already shows these positions holding at 93 FTE (not growing further), and future years will likely see reductions as the federal funding cliff takes effect.</p>
+    <p style="font-size: 0.85rem; color: #a16207; margin-top: 8px;"><em>Because this jump is almost certainly driven by temporary federal funding rather than local budget decisions, it should be interpreted with caution when evaluating Colchester's long-term staffing trends. The staffing charts above (Charts 13, 13b, 14, 14b) use data through FY 2024-25 and include these positions.</em></p>
   </div>
 
 </div>
@@ -816,6 +860,46 @@ new Chart(document.getElementById('chart14'), {
   }
 });
 
+// Chart 14b: Special Education Staffing Growth
+const spedTeach = [26.5,26.5,26.5,26.6,24.3,23.2,23.0,24.0,24.0,24.0,27.0,26.0,26.0,25.0,26.0,24.0,28.0];
+const spedPara = [50.0,50.0,47.0,54.5,51.0,53.5,55.5,60.5,57.0,52.3,62.3,62.3,62.0,63.0,61.0,57.0,65.0];
+const spedTotal = spedTeach.map((v, i) => +(v + spedPara[i]).toFixed(1));
+const genEdTeach = [205.1,201.8,194.3,186.4,181.4,183.9,175.8,171.2,166.3,160.4,161.7,161.3,160.8,161.4,161.0,162.4,161.5];
+
+// Show as % change from baseline (same style as chart 14)
+const spedTeachPct = pctChange(spedTeach);
+const spedParaPct = pctChange(spedPara);
+const spedTotalPct = pctChange(spedTotal);
+const genEdTeachPct = pctChange(genEdTeach);
+
+new Chart(document.getElementById('chart14b'), {
+  type: 'line',
+  data: {
+    labels: staffLabels,
+    datasets: [
+      { label: 'Total Sped Staff', data: spedTotalPct, borderColor: '#dc2626', backgroundColor: 'rgba(220,38,38,0.08)', borderWidth: 3, pointRadius: 4, fill: true },
+      { label: 'Sped Paraprofessionals', data: spedParaPct, borderColor: '#f97316', borderWidth: 2.5, pointRadius: 3, fill: false },
+      { label: 'Sped Teachers', data: spedTeachPct, borderColor: '#7c3aed', borderWidth: 2.5, pointRadius: 3, fill: false },
+      { label: 'Gen Ed Teachers', data: genEdTeachPct, borderColor: '#16a34a', borderWidth: 2, pointRadius: 3, borderDash: [4,3], fill: false },
+      { label: 'Enrollment', data: enrollPct, borderColor: '#2563eb', borderWidth: 2, pointRadius: 3, borderDash: [4,3], fill: false },
+      { label: 'Zero Line', data: Array(17).fill(0), borderColor: '#94a3b8', borderWidth: 1, pointRadius: 0, borderDash: [2,2] }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { filter: item => item.text !== 'Zero Line' } },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label === 'Zero Line' ? '' : `${ctx.dataset.label}: ${ctx.parsed.y > 0 ? '+' : ''}${ctx.parsed.y.toFixed(1)}%` },
+        filter: item => item.dataset.label !== 'Zero Line'
+      }
+    },
+    scales: {
+      y: { title: { display: true, text: '% Change from FY 2008-09' }, min: -40, max: 40, ticks: { callback: v => (v > 0 ? '+' : '') + v + '%' }, grid: { color: ctx => ctx.tick.value === 0 ? '#94a3b8' : '#f1f5f9' } },
+      x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+    }
+  }
+});
+
 // Chart 15: Admin vs Teacher Salary Growth (Real $)
 const avgTeachSal = [64500,65500,66500,67500,68500,70000,71500,73000,74500,76000,78804,79500,80500,81500,82554,84000,85500];
 const avgAdminSal = [95000,97000,98000,100000,102000,104000,106000,108000,110000,112000,115000,117000,119000,122000,125000,128000,131000];
@@ -843,6 +927,39 @@ new Chart(document.getElementById('chart15'), {
     },
     scales: {
       y: { title: { display: true, text: 'Average Annual Salary' }, min: 55000, max: 145000, ticks: { callback: v => '$'+(v/1000)+'K' }, grid: { color: '#f1f5f9' } },
+      x: { grid: { display: false }, ticks: { maxRotation: 45 } }
+    }
+  }
+});
+
+// Chart 15b: Town Insurance Costs
+const townHealthIns = [729106,714526,782570,1016477,1045629,1122201,1002760,941618,782635,1004860,860562,874951,916343,1045603,1118393,1096201,1087399,1123290];
+const townTotalIns = [1253249,1343683,1588585,1696379,1737763,1350978,1567296,1516957,1395486,1657614,1579325,1642333,1683540,1721911,1863938,1842053,1933000,2023725];
+// CPI-adjusted baseline: what FY 07-08 health insurance would be if it grew with CPI
+const hiCpiAdj = cpiFactors.map(f => Math.round(729106*f));
+// Scale to thousands for readability
+const hiK = townHealthIns.map(v => +(v/1000).toFixed(0));
+const totalInsK = townTotalIns.map(v => +(v/1000).toFixed(0));
+const hiCpiK = hiCpiAdj.map(v => +(v/1000).toFixed(0));
+
+new Chart(document.getElementById('chart15b'), {
+  type: 'bar',
+  data: {
+    labels,
+    datasets: [
+      { type: 'bar', label: 'Total Town Insurance', data: totalInsK, backgroundColor: 'rgba(251,191,36,0.5)', borderColor: '#f59e0b', borderWidth: 1, borderRadius: 3, order: 2 },
+      { type: 'line', label: 'Health Insurance Only', data: hiK, borderColor: '#dc2626', borderWidth: 2.5, pointRadius: 4, fill: false, order: 1 },
+      { type: 'line', label: 'Health Ins. (CPI-adjusted baseline)', data: hiCpiK, borderColor: '#dc2626', borderWidth: 1.5, pointRadius: 0, borderDash: [4,4], fill: false, order: 0 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top' },
+      tooltip: { callbacks: { label: ctx => `${ctx.dataset.label}: $${ctx.parsed.y.toLocaleString()}K` } }
+    },
+    scales: {
+      y: { title: { display: true, text: 'Cost ($K)' }, min: 0, max: 2200, ticks: { callback: v => '$'+v+'K' }, grid: { color: '#f1f5f9' } },
       x: { grid: { display: false }, ticks: { maxRotation: 45 } }
     }
   }
